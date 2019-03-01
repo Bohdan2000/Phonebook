@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <ul th:each="user:${findAll}">
+        <li style="border: 2px solid ">
+            <p th:text="${user.getName()}+${user.getSurname()}"></p>
+            <div>
+                <a th:href="@{'userDetails/'+${user.id}}">
+                    <button>
+                        details
+                    </button>
+                </a>
+            </div>
+            <br>
+        </li>
+    </ul>
+
+    <form action="/saveUser" method="post" th:object="${user}">
+        <input th:field="*{name}"  placeholder="text">
+        <input th:field="*{surname}"  placeholder="text">
+        <input type="submit" value="save">
+    </form>
+
+</body>
+</html>

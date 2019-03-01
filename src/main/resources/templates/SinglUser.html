@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SinglUser</title>
+</head>
+<body>
+
+    [[${user.id}]]
+    [[${user.name}]]
+    [[${user.surname}]]
+    <br>
+    <hr>
+    <form action="/userDetails/remove" method="post" >
+        <input type="hidden" name="id"  placeholder="id" th:value="${user.id}">
+        <input type="submit" value="remove this user">
+    </form>
+    <br>
+    <hr>
+    <form th:action="@{/userDetails/update}" method="post" th:object="${user}">
+        <input type="hidden" th:field="*{id}"  placeholder="id" th:value="${user.id}">
+        <input th:field="*{name}"  placeholder="name" th:value="${user.name}">
+        <input th:field="*{surname}"  placeholder="surname" th:value="${user.surname}">
+        <input type="submit" value="update user">
+
+    </form>
+    <br>
+    <hr>
+    <form action="/userDetails/showContact" method="get">
+        <input type="hidden" name="id"  placeholder="id" th:value="${user.id}">
+        <input type="submit" value="show all contact">
+    </form>
+    <br>
+    <hr>
+    <form action="/userDetails/saveContact" method="post">
+        <input type="hidden" name="id"  placeholder="id" th:value="${user.id}">
+        <input type="text" name="phone" placeholder="phone">
+        <input type="email" name="email" placeholder="email">
+        <input type="submit" value="saveContact">
+    </form>
+
+</body>
+</html>
